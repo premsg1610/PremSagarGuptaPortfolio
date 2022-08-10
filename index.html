@@ -298,23 +298,23 @@
                         
 
                     </div>
-                </div>
+                                </div>
                 <div class="column right">
                     <div class="text">Message me</div>
-                    <form action="#">
+                    <form id="myForm">
                         <div class="fields">
                             <div class="field name">
-                                <input type="text" placeholder="Name" required>
+                                <input type="text" name="user_name" placeholder="Name" required>
                             </div>
                             <div class="field email">
-                                <input type="email" placeholder="Email" required>
+                                <input type="email" name="email" placeholder="Email" required>
                             </div>
                         </div>
                         <div class="field">
-                            <input type="text" placeholder="Subject" required>
+                            <input type="text" name="subject" placeholder="Subject" required>
                         </div>
                         <div class="field textarea">
-                            <textarea cols="30" rows="10" placeholder="Message.." required></textarea>
+                            <textarea cols="30" rows="10" name="message" placeholder="Message.." required></textarea>
                         </div>
                         <div class="button-area">
                             <button type="submit">Send message</button>
@@ -333,3 +333,36 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+
+
+
+<script>
+    document
+      .getElementById("myForm")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+        const serviceID = "service_h5mwdxf";
+        const templateID = "template_jmq1kpa";
+        // send the email here
+        emailjs.sendForm(serviceID, templateID, this).then(
+          (response) => {
+            console.log("Email Sent Successfully !", response.status, response.text);
+            alert("Email Sent Successfully !");
+          },
+          (error) => {
+            console.log("FAILED...", error);
+            alert("FAILED...", error);
+          }
+        );
+      });
+    </script>
+    <script
+          type="text/javascript"
+          src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"
+        ></script>
+        <script type="text/javascript">      (function () {
+            emailjs.init("794kzP2GV8IBa0UGX");
+          })();
+    
+        </script>
